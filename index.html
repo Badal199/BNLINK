@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BN LAST KING HACK</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            color: #e91e63;
+            margin-bottom: 20px;
+        }
+        #gameLinkInput {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #e91e63;
+            border-radius: 5px;
+        }
+        #submitLink {
+            padding: 10px 20px;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #submitLink:hover {
+            background-color: #d81b60;
+        }
+        #resultDisplay {
+            margin-top: 20px;
+            display: none;
+            width: 350px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        #resultTable {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        #resultTable th, #resultTable td {
+            border: 2px solid #e91e63;
+            padding: 10px;
+            text-align: center;
+        }
+        #telegramButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0088cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #telegramButton:hover {
+            background-color: #007bb5;
+        }
+        .led-border {
+            border: 2px solid #e91e63;
+            animation: rgbBorder 1s linear infinite;
+        }
+        @keyframes rgbBorder {
+            0% { border-color: #e91e63; }
+            25% { border-color: #ff4081; }
+            50% { border-color: #e91e63; }
+            75% { border-color: #ff4081; }
+            100% { border-color: #e91e63; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>BN LAST KING HACK</h1>
+    
+    <input type="text" id="gameLinkInput" placeholder="Enter Game Link">
+    <button id="submitLink">Submit Link</button>
+
+    <div id="resultDisplay" class="led-border">
+        <h2>Results History</h2>
+        <table id="resultTable">
+            <thead>
+                <tr>
+                    <th>Period Number</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody id="resultHistory">
+                <tr>
+                    <td colspan="2">No results yet.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button id="telegramButton" onclick="window.open('https://t.me/BNLASTKINGHACK', '_blank')">Join Telegram Channel</button>
+
+    <script>
+        let periodInterval;
+        const resultsPattern = ["SMALL", "BIG", "SMALL", "BIG", "SMALL", "SMALL", "BIG", "BIG", "SMALL", "SMALL", "BIG", "SMALL", "BIG", "SMALL", "SMALL", "BIG", "SMALL", "BIG", "SMALL", "BIG"];
+        let currentPeriod = 0;
+
+        document.getElementById('submitLink').onclick = function() {
+            const gameLink = document.getElementById('gameLinkInput').value;
+            if (!gameLink) {
+                alert('Must enter game link!');
+                return;
+            }
+
+            document.getElementById('resultDisplay').style.display = 'block';
+            startPeriodTimer();
+        };
+
+        function startPeriodTimer() {
+            clearInterval(periodInterval);
+            currentPeriod = 0; // Reset the period count
+
+            // Update results every 30 seconds
+            periodInterval = setInterval(function() {
+                currentPeriod++;
+                updateResult(); // Show one result at each period change
+            }, 30000); // Change every 30 seconds
+        }
+
+        function updateResult() {
+            const resultHistoryElement = document.getElementById('resultHistory');
+
+            // Get the current date in the desired format
+            const now = new Date();
+            const formattedDate = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
+
+            // Construct the full period number
+            const fullPeriodNumber = `${formattedDate}30${currentPeriod}`;
+
+            // Get the current result based on the period
+            const resultIndex = (currentPeriod - 1) % resultsPattern.length;
+            const result = resultsPattern[resultIndex];
+
+            // Add to the results history table
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `<td>${fullPeriodNumber}</td><td>${result}</td>`;
+            resultHistoryElement.appendChild(newRow);
+
+            // Show the latest result
+            if (resultHistoryElement.children.length > 1) {
+                resultHistoryElement.deleteRow(1); // Remove the "No results yet" row
+            }
+        }
+    </script>
+</body>
+</html>
